@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>generate_recos (HYBRID)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File server/src/hybrid.rb, line 23</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">generate_recos</span>(<span class="ruby-identifier">uid</span>,<span class="ruby-identifier">algo</span>,<span class="ruby-identifier">filename</span>,<span class="ruby-identifier">dir</span>)
+                <span class="ruby-identifier">obj</span>=<span class="ruby-constant">CBF</span>.<span class="ruby-identifier">new</span>
+                <span class="ruby-identifier">res</span>=<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">filename</span>,<span class="ruby-identifier">$index</span>,<span class="ruby-identifier">dir</span>)
+            <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">decide</span>()<span class="ruby-operator">==</span><span class="ruby-keyword kw">true</span>)
+                        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">cascade_hybrid</span>(<span class="ruby-identifier">uid</span>,<span class="ruby-identifier">algo</span>,<span class="ruby-identifier">filename</span>,<span class="ruby-identifier">res</span>)
+                <span class="ruby-keyword kw">else</span>
+                        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">weighted_hybrid</span>(<span class="ruby-identifier">uid</span>,<span class="ruby-identifier">algo</span>,<span class="ruby-identifier">filename</span>,<span class="ruby-identifier">res</span>)
+                <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

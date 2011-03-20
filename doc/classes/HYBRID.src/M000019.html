@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>weighted_hybrid (HYBRID)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File server/src/hybrid.rb, line 38</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">weighted_hybrid</span>(<span class="ruby-identifier">uid</span>,<span class="ruby-identifier">algo</span>,<span class="ruby-identifier">filename</span>,<span class="ruby-identifier">content</span>)
+                <span class="ruby-identifier">alpha</span>=(<span class="ruby-identifier">$total_num</span>.<span class="ruby-identifier">to_f</span>)<span class="ruby-operator">/</span>(<span class="ruby-value">2.0</span><span class="ruby-operator">*</span><span class="ruby-identifier">$switch_threshold</span><span class="ruby-operator">*</span>(<span class="ruby-identifier">$userlist</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">to_f</span>))
+<span class="ruby-comment cmt">#               alpha=0.7</span>
+                <span class="ruby-identifier">beta</span>=<span class="ruby-value">1.0</span><span class="ruby-operator">-</span><span class="ruby-identifier">alpha</span>
+                <span class="ruby-identifier">cf_obj</span>=<span class="ruby-constant">CF</span>.<span class="ruby-identifier">new</span>
+                <span class="ruby-identifier">res</span>=<span class="ruby-identifier">cf_obj</span>.<span class="ruby-identifier">generate_recos</span>(<span class="ruby-identifier">uid</span>,<span class="ruby-identifier">algo</span>)
+                <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">index</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">res</span>.<span class="ruby-identifier">size</span>
+                   <span class="ruby-identifier">res</span>[<span class="ruby-identifier">index</span>][<span class="ruby-value">1</span>]=<span class="ruby-identifier">alpha</span><span class="ruby-operator">*</span><span class="ruby-identifier">res</span>[<span class="ruby-identifier">index</span>][<span class="ruby-value">1</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">beta</span><span class="ruby-operator">*</span><span class="ruby-identifier">content</span>[<span class="ruby-identifier">res</span>[<span class="ruby-identifier">index</span>][<span class="ruby-value">0</span>]].<span class="ruby-identifier">to_f</span>
+                <span class="ruby-keyword kw">end</span>
+                <span class="ruby-identifier">q</span>=<span class="ruby-identifier">res</span>.<span class="ruby-identifier">sort</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">b</span>[<span class="ruby-value">1</span>]<span class="ruby-operator">&lt;=&gt;</span><span class="ruby-identifier">a</span>[<span class="ruby-value">1</span>]}
+                <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">res</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

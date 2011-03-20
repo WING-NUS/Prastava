@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>generate_recos (CBF)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File server/src/content_based_filtering.rb, line 28</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">generate_recos</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">dir</span>)
+        <span class="ruby-identifier">score_hash</span> = <span class="ruby-identifier">search</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">$index</span>,<span class="ruby-identifier">dir</span>)
+        <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nProcessing complete &quot;</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">score_hash</span>.<span class="ruby-identifier">sort</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">b</span>[<span class="ruby-value">1</span>]<span class="ruby-operator">&lt;=&gt;</span><span class="ruby-identifier">a</span>[<span class="ruby-value">1</span>]}
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

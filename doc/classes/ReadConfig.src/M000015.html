@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>parse_cf (ReadConfig)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File server/src/readConfig.rb, line 35</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse_cf</span>(<span class="ruby-identifier">hash</span>)
+        <span class="ruby-identifier">uid</span> = <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'userid'</span>]
+        <span class="ruby-identifier">algo</span> = <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'algo'</span>]
+        <span class="ruby-identifier">$minR</span> = <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'minRating'</span>].<span class="ruby-identifier">to_f</span>
+        <span class="ruby-identifier">$maxR</span> = <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'maxRating'</span>].<span class="ruby-identifier">to_f</span>
+        <span class="ruby-identifier">$k_sim_users</span> = <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'k_sim_users'</span>].<span class="ruby-identifier">to_i</span>
+        <span class="ruby-identifier">$k_sim_items</span> = <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'k_sim_items'</span>].<span class="ruby-identifier">to_i</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Recommendations through Collaborative Filtering :\n&quot;</span>
+        <span class="ruby-identifier">cf_recos</span> = <span class="ruby-constant">CF</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">cf_recos_result</span> = <span class="ruby-identifier">cf_recos</span>.<span class="ruby-identifier">generate_recos</span>(<span class="ruby-identifier">uid</span>, <span class="ruby-identifier">algo</span>)
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">cf_recos_result</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">0</span>,<span class="ruby-identifier">$k_sim_items</span>)
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>top_k_users (CF)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File server/src/collaborative_filtering.rb, line 71</span>
+ <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">top_k_users</span>(<span class="ruby-identifier">uid</span>, <span class="ruby-identifier">algo</span>) 
+        <span class="ruby-identifier">empty</span>=[]
+        <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">uid</span><span class="ruby-operator">==</span><span class="ruby-keyword kw">nil</span>)
+                <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">empty</span> <span class="ruby-comment cmt">#returning nil array;</span>
+        <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">my_ratings_id</span>, <span class="ruby-identifier">num</span>, <span class="ruby-identifier">sim_hash</span>, <span class="ruby-identifier">similarity</span> =  [], <span class="ruby-value">-1</span>, {}, <span class="ruby-constant">Sim_measure</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">$seen</span>={}
+        <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">pos</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">$data</span>[<span class="ruby-identifier">uid</span>].<span class="ruby-identifier">length</span>
+                <span class="ruby-keyword kw">if</span>(<span class="ruby-operator">!</span>(<span class="ruby-identifier">$data</span>[<span class="ruby-identifier">uid</span>.<span class="ruby-identifier">to_i</span>][<span class="ruby-identifier">pos</span>].<span class="ruby-identifier">nil?</span>))
+                        <span class="ruby-identifier">my_ratings_id</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">pos</span>
+                        <span class="ruby-identifier">$seen</span>[<span class="ruby-identifier">$itemlist</span>[<span class="ruby-identifier">pos</span>]]=<span class="ruby-value">1</span>
+                <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>    
+        
+        <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">j</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">$userlist</span>.<span class="ruby-identifier">length</span>
+                <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">j!</span>=<span class="ruby-identifier">uid</span>)
+                        <span class="ruby-identifier">target</span>=<span class="ruby-identifier">j</span>
+                        <span class="ruby-identifier">other_ratings</span>=[]
+                        <span class="ruby-identifier">my_ratings</span>=[]
+                        <span class="ruby-identifier">extra_vector</span>=[]
+                        <span class="ruby-comment cmt">#here put code</span>
+                        <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">my_ratings_id</span>.<span class="ruby-identifier">length</span>
+                              <span class="ruby-identifier">mark</span>=<span class="ruby-identifier">my_ratings_id</span>[<span class="ruby-identifier">i</span>]
+                                <span class="ruby-keyword kw">if</span>(<span class="ruby-operator">!</span>(<span class="ruby-identifier">$data</span>[<span class="ruby-identifier">target</span>][<span class="ruby-identifier">mark</span>].<span class="ruby-identifier">nil?</span>))
+                                        <span class="ruby-identifier">my_ratings</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">$data</span>[<span class="ruby-identifier">uid</span>][<span class="ruby-identifier">mark</span>]
+                                        <span class="ruby-identifier">other_ratings</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">$data</span>[<span class="ruby-identifier">target</span>][<span class="ruby-identifier">mark</span>]
+                                <span class="ruby-keyword kw">else</span>
+                                        <span class="ruby-identifier">extra_vector</span><span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">$data</span>[<span class="ruby-identifier">uid</span>][<span class="ruby-identifier">mark</span>]
+                                <span class="ruby-keyword kw">end</span>
+                        <span class="ruby-keyword kw">end</span>
+                        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">algo</span>
+                        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;cosine&quot;</span>
+                                 <span class="ruby-identifier">sim_hash</span>[<span class="ruby-identifier">target</span>] = <span class="ruby-identifier">similarity</span>.<span class="ruby-identifier">cosine_sim</span>(<span class="ruby-identifier">my_ratings</span>, <span class="ruby-identifier">other_ratings</span>,<span class="ruby-identifier">extra_vector</span>)
+                        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;pearson&quot;</span>
+                                <span class="ruby-identifier">sim_hash</span>[<span class="ruby-identifier">target</span>] = <span class="ruby-identifier">similarity</span>.<span class="ruby-identifier">pearson_corr</span>(<span class="ruby-identifier">my_ratings</span>, <span class="ruby-identifier">other_ratings</span>,<span class="ruby-identifier">extra_vector</span>)
+                        <span class="ruby-keyword kw">else</span>
+                                <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Wrong value for parameter 'algo'. Program will exit.&quot;</span>
+                                <span class="ruby-identifier">exit</span>()
+                        <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">end</span>
+       <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">res</span>=<span class="ruby-identifier">sim_hash</span>.<span class="ruby-identifier">sort</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">b</span>[<span class="ruby-value">1</span>]<span class="ruby-operator">&lt;=&gt;</span><span class="ruby-identifier">a</span>[<span class="ruby-value">1</span>]}  <span class="ruby-comment cmt"># Return a two dim array of top k similar users</span>
+        <span class="ruby-identifier">res</span>=<span class="ruby-identifier">res</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">0</span>,<span class="ruby-identifier">$k_sim_users</span>)
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">res</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

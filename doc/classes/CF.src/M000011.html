@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>read_from_file (CF)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File server/src/collaborative_filtering.rb, line 129</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_from_file</span>(<span class="ruby-identifier">path</span>)
+
+        <span class="ruby-comment cmt">##################################################################</span>
+        <span class="ruby-comment cmt">#</span>
+        <span class="ruby-comment cmt"># The Format of the rating file should be as follows:</span>
+        <span class="ruby-comment cmt">#</span>
+        <span class="ruby-comment cmt"># Respective fiels need to be enclosed in quotes</span>
+        <span class="ruby-comment cmt"># and seperated by space.</span>
+        <span class="ruby-comment cmt">#</span>
+        <span class="ruby-comment cmt"># &quot;item1&quot; &quot;user1&quot; &quot;rating1&quot;</span>
+        <span class="ruby-comment cmt"># &quot;item2&quot; &quot;user2&quot; &quot;rating2&quot;</span>
+        <span class="ruby-comment cmt">#Here it represent the items &quot;item1&quot; and &quot;item2&quot; are given a rating of </span>
+        <span class="ruby-comment cmt"># &quot;rating1&quot; and &quot;rating2&quot; by user &quot;user1&quot; and &quot;user2&quot; respectively.  </span>
+        <span class="ruby-comment cmt">#</span>
+        <span class="ruby-comment cmt">####################################################################</span>
+        <span class="ruby-identifier">$total_num</span>=<span class="ruby-value">0</span>
+        <span class="ruby-identifier">count</span>=<span class="ruby-value">-1</span>;<span class="ruby-identifier">coun</span>=<span class="ruby-value">-1</span>
+        <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+                <span class="ruby-keyword kw">while</span> <span class="ruby-operator">!</span><span class="ruby-identifier">file</span>.<span class="ruby-identifier">eof</span>
+                (<span class="ruby-identifier">a</span>,<span class="ruby-identifier">item</span>,<span class="ruby-identifier">b</span>,<span class="ruby-identifier">user</span>,<span class="ruby-identifier">c</span>,<span class="ruby-identifier">rating</span>,<span class="ruby-identifier">d</span>)=<span class="ruby-identifier">file</span>.<span class="ruby-identifier">readline</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;\&quot;&quot;</span>)
+                        <span class="ruby-identifier">rating</span> =(<span class="ruby-identifier">rating</span>.<span class="ruby-identifier">to_f</span><span class="ruby-operator">-</span><span class="ruby-identifier">$minR</span>)<span class="ruby-operator">/</span>(<span class="ruby-identifier">$maxR</span><span class="ruby-operator">-</span><span class="ruby-identifier">$minR</span>) <span class="ruby-comment cmt">#projecting the rating to 0..1 scale</span>
+                        <span class="ruby-identifier">$total_num</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span>;
+                        <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">$item_hash</span>[<span class="ruby-identifier">item</span>]<span class="ruby-operator">==</span><span class="ruby-keyword kw">nil</span>)
+                                <span class="ruby-identifier">count</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span>
+                                <span class="ruby-identifier">$item_hash</span>[<span class="ruby-identifier">item</span>]=<span class="ruby-identifier">count</span>
+                                <span class="ruby-identifier">$itemlist</span>[<span class="ruby-identifier">count</span>]=<span class="ruby-identifier">item</span>
+                        <span class="ruby-keyword kw">end</span>
+                        <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">$user_hash</span>[<span class="ruby-identifier">user</span>]<span class="ruby-operator">==</span><span class="ruby-keyword kw">nil</span>)
+                                      <span class="ruby-identifier">coun</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span>
+                                <span class="ruby-identifier">$data</span>[<span class="ruby-identifier">coun</span>]=[]
+                                <span class="ruby-identifier">$user_total_count</span>[<span class="ruby-identifier">coun</span>]=<span class="ruby-value">0</span>
+                                <span class="ruby-identifier">$user_hash</span>[<span class="ruby-identifier">user</span>]=<span class="ruby-identifier">coun</span>
+                                <span class="ruby-identifier">$userlist</span>[<span class="ruby-identifier">coun</span>]=<span class="ruby-identifier">user</span>
+                        <span class="ruby-keyword kw">end</span>
+                        <span class="ruby-identifier">$data</span>[<span class="ruby-identifier">$user_hash</span>[<span class="ruby-identifier">user</span>]][<span class="ruby-identifier">$item_hash</span>[<span class="ruby-identifier">item</span>]]=<span class="ruby-identifier">rating</span>.<span class="ruby-identifier">to_f</span>
+                        <span class="ruby-identifier">$user_mean_ratings</span>[<span class="ruby-identifier">$user_hash</span>[<span class="ruby-identifier">user</span>]]= <span class="ruby-identifier">$user_mean_ratings</span>[<span class="ruby-identifier">$user_hash</span>[<span class="ruby-identifier">user</span>]].<span class="ruby-identifier">to_f</span><span class="ruby-operator">+</span><span class="ruby-identifier">rating</span>.<span class="ruby-identifier">to_f</span>
+                        <span class="ruby-identifier">$user_total_count</span>[<span class="ruby-identifier">$user_hash</span>[<span class="ruby-identifier">user</span>]]<span class="ruby-operator">+=</span><span class="ruby-value">1</span>
+                <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">index</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">$userlist</span>.<span class="ruby-identifier">length</span>
+                <span class="ruby-identifier">$user_mean_ratings</span>[<span class="ruby-identifier">index</span>]=<span class="ruby-identifier">$user_mean_ratings</span>[<span class="ruby-identifier">index</span>].<span class="ruby-identifier">to_f</span><span class="ruby-operator">/</span><span class="ruby-identifier">$user_total_count</span>[<span class="ruby-identifier">index</span>].<span class="ruby-identifier">to_f</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;done&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

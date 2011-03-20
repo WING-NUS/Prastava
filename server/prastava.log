@@ -1,0 +1,54 @@
+# Logfile created on Mon Apr 27 16:34:56 +0800 2009 by /
+I, [2009-04-27T16:34:56.612841 #28012]  INFO -- PrastavaServer: Start of PrastavaServer.
+I, [2009-04-27T16:34:59.055175 #28012]  INFO -- PrastavaServer: End of PrastavaServer. (status: Stop)
+I, [2009-04-27T16:37:25.483101 #28079]  INFO -- PrastavaServer: Start of PrastavaServer.
+I, [2009-04-27T16:37:29.632256 #28079]  INFO -- PrastavaServer: End of PrastavaServer. (status: Stop)
+I, [2009-04-27T16:45:44.582878 #28339]  INFO -- PrastavaServer: Start of PrastavaServer.
+I, [2009-04-27T16:45:57.890130 #28339]  INFO -- PrastavaServer: End of PrastavaServer. (status: Stop)
+I, [2009-04-27T16:50:28.318903 #28393]  INFO -- PrastavaServer: Start of PrastavaServer.
+I, [2009-04-27T16:53:46.101372 #28393]  INFO -- : userid 1 logged on Mon Apr 27 16:53:46 +0800 2009
+I, [2009-04-27T16:53:46.102424 #28393]  INFO -- : Recommendations through Collabrative for userid 1
+I, [2009-04-27T16:53:51.242558 #28393]  INFO -- : userid 1 logged out on Mon Apr 27 16:53:51 +0800 2009
+I, [2009-04-27T16:54:07.182631 #28393]  INFO -- : userid 1 logged on Mon Apr 27 16:54:07 +0800 2009
+I, [2009-04-27T16:54:07.183607 #28393]  INFO -- : Recommendations through Collabrative for userid 1
+I, [2009-04-27T16:54:12.108767 #28393]  INFO -- : userid 1 logged out on Mon Apr 27 16:54:12 +0800 2009
+I, [2009-04-27T16:54:45.512037 #28393]  INFO -- : userid 1 logged on Mon Apr 27 16:54:45 +0800 2009
+I, [2009-04-27T16:54:45.512984 #28393]  INFO -- : Recommendations through Content based Filtering for userid 1
+I, [2009-04-27T16:54:45.595543 #28393]  INFO -- : userid 1 logged out on Mon Apr 27 16:54:45 +0800 2009
+I, [2009-04-27T16:54:57.197914 #28393]  INFO -- : userid 1 logged on Mon Apr 27 16:54:57 +0800 2009
+I, [2009-04-27T16:54:57.198811 #28393]  INFO -- : Recommendations through both Collaborative and Content based Filtering for userid 1
+I, [2009-04-27T16:55:02.198066 #28393]  INFO -- : userid 1 logged out on Mon Apr 27 16:55:02 +0800 2009
+I, [2009-04-27T16:55:18.995384 #28393]  INFO -- : userid 1 logged on Mon Apr 27 16:55:18 +0800 2009
+I, [2009-04-27T16:55:18.996304 #28393]  INFO -- : Recommendations through Collabrative for userid 1
+I, [2009-04-27T16:55:23.862553 #28393]  INFO -- : userid 1 logged out on Mon Apr 27 16:55:23 +0800 2009
+I, [2009-04-27T16:56:38.043706 #28393]  INFO -- : userid 1 logged on Mon Apr 27 16:56:38 +0800 2009
+I, [2009-04-27T16:56:38.044636 #28393]  INFO -- : Recommendations through Collabrative for userid 1
+I, [2009-04-27T16:56:42.983032 #28393]  INFO -- : userid 1 logged out on Mon Apr 27 16:56:42 +0800 2009
+I, [2009-04-27T16:56:56.116766 #28393]  INFO -- PrastavaServer: End of PrastavaServer. (status: Stop)
+I, [2009-04-27T17:13:01.143862 #28739]  INFO -- PrastavaServer: Start of PrastavaServer.
+I, [2009-04-27T17:13:09.637792 #28739]  INFO -- : userid 1 logged on Mon Apr 27 17:13:09 +0800 2009
+I, [2009-04-27T17:13:09.638883 #28739]  INFO -- : Recommendations through Collabrative for userid 1
+I, [2009-04-27T17:13:14.539191 #28739]  INFO -- : userid 1 logged out on Mon Apr 27 17:13:14 +0800 2009
+I, [2009-04-27T17:13:16.292907 #28739]  INFO -- : userid 1 logged on Mon Apr 27 17:13:16 +0800 2009
+I, [2009-04-27T17:13:16.293868 #28739]  INFO -- : Recommendations through Collabrative for userid 1
+I, [2009-04-27T17:13:21.269775 #28739]  INFO -- : userid 1 logged out on Mon Apr 27 17:13:21 +0800 2009
+I, [2009-04-27T17:13:27.691902 #28739]  INFO -- PrastavaServer: End of PrastavaServer. (status: Stop)
+I, [2009-04-27T17:43:39.569000 #2100]  INFO -- PrastavaServer: Start of PrastavaServer.
+I, [2009-04-27T17:44:37.569000 #2100]  INFO -- PrastavaServer: End of PrastavaServer. (status: Stop)
+I, [2009-04-27T17:44:53.507000 #1408]  INFO -- PrastavaServer: Start of PrastavaServer.
+I, [2009-04-27T17:46:20.710000 #1408]  INFO -- : userid 1 logged on Mon Apr 27 17:46:20 +0800 2009
+I, [2009-04-27T17:46:20.726000 #1408]  INFO -- : Recommendations through Collabrative for userid 1
+I, [2009-04-27T17:46:25.569000 #1408]  INFO -- : userid 1 logged out on Mon Apr 27 17:46:25 +0800 2009
+I, [2009-04-27T17:50:22.476000 #1408]  INFO -- : userid 1 logged on Mon Apr 27 17:50:22 +0800 2009
+I, [2009-04-27T17:50:22.476000 #1408]  INFO -- : Recommendations through Collabrative for userid 1
+I, [2009-04-27T17:50:27.226000 #1408]  INFO -- : userid 1 logged out on Mon Apr 27 17:50:27 +0800 2009
+I, [2009-04-27T17:51:08.491000 #1408]  INFO -- : userid 1 logged on Mon Apr 27 17:51:08 +0800 2009
+I, [2009-04-27T17:51:08.507000 #1408]  INFO -- : Recommendations through Content based Filtering for userid 1
+I, [2009-04-27T17:51:08.647000 #1408]  INFO -- : userid 1 logged out on Mon Apr 27 17:51:08 +0800 2009
+I, [2009-04-27T17:51:17.929000 #1408]  INFO -- : userid 1 logged on Mon Apr 27 17:51:17 +0800 2009
+I, [2009-04-27T17:51:17.929000 #1408]  INFO -- : Recommendations through both Collaborative and Content based Filtering for userid 1
+I, [2009-04-27T17:51:23.022000 #1408]  INFO -- : userid 1 logged out on Mon Apr 27 17:51:23 +0800 2009
+I, [2009-04-27T17:51:33.226000 #1408]  INFO -- : userid 1 logged on Mon Apr 27 17:51:33 +0800 2009
+I, [2009-04-27T17:51:33.226000 #1408]  INFO -- : Recommendations through Collabrative for userid 1
+I, [2009-04-27T17:51:38.444000 #1408]  INFO -- : userid 1 logged out on Mon Apr 27 17:51:38 +0800 2009
+I, [2009-04-27T17:52:05.257000 #1408]  INFO -- PrastavaServer: End of PrastavaServer. (status: Stop)
